@@ -1,3 +1,5 @@
+const reactLiveJS = require('react-livejs/config');
+
 module.exports = {
   files: {
     javascripts: {
@@ -12,14 +14,13 @@ module.exports = {
   plugins: {
     babel: {
       presets: ['es2015', 'react'],
-      plugins: [
-        ["react-transform", {
-          transforms: [{
-            "transform": "livereactload/babel-transform",
-            "imports": ["react"]
-          }]
-        }]
-      ]
+      env: {
+        development: {
+          plugins: [
+            reactLiveJS
+          ]
+        }
+      }
     },
     autoReload: {
       liveJs: true

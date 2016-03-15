@@ -5,9 +5,6 @@ import { createStore } from 'redux';
 import counterApp from './reducers';
 import App from 'components/App';
 
-// should get rid of that
-import _ from 'react-proxy';
-
 // detect if we're loading for the first time or reloading
 if (!window.store) {
   window.store = createStore(counterApp, 0);
