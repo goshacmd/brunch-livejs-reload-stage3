@@ -3,10 +3,7 @@ const reactLiveJS = require('react-livejs/config');
 module.exports = {
   files: {
     javascripts: {
-      joinTo: {
-        'vendor.js': /^(?!app)/,
-        'app.js': /^app/
-      }
+      joinTo: 'app.js'
     },
     stylesheets: {joinTo: 'app.css'}
   },

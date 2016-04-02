@@ -5,16 +5,18 @@ import { createStore } from 'redux';
 import counterApp from './reducers';
 import App from 'components/App';
 
+const store = createStore(counterApp, 0);
 // detect if we're loading for the first time or reloading
-if (!window.store) {
-  window.store = createStore(counterApp, 0);
-} else {
-  window.store.replaceReducer(counterApp);
+if (module.hot) {
+  module.hot.accept('./reducers', () => {
+    console.log('replacing reducers!');
+    store.replaceReducer(require('./reducers').default);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Provider store={window.store}>
+    <Provider store={store}>
       <App />
     </Provider>,
     document.querySelector('#app')
